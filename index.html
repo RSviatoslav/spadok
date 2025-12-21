@@ -27,13 +27,14 @@
         }
     </script>
     <style>
+        [x-cloak] { display: none !important; }
         .bg-noise {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             pointer-events: none; z-index: 0; opacity: 0.04;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
         }
         .glass-panel {
-            background: rgba(44, 52, 36, 0.6);
+            background: rgba(237, 233, 228, 0.05);
             backdrop-filter: blur(12px);
             border: 1px solid rgba(237, 233, 228, 0.1);
         }
@@ -45,190 +46,219 @@
             box-shadow: 0 15px 30px -10px rgba(212, 175, 55, 0.7);
             transform: translateY(-3px);
         }
-        [x-cloak] { display: none !important; }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 10px; }
     </style>
 </head>
 <body 
     x-data="{ 
         lang: 'uk', 
-        openModal: null,
+        openModal: null, 
+        activeImage: '',
         t: {
             uk: {
-                villas: 'Вілли',
+                villas: 'Наші Вілли',
                 book: 'Забронювати',
-                hero_title: 'SPADOK',
                 hero_subtitle: 'Місце, де твій рід відновлює силу',
                 hero_desc: 'Комплекс приватних вілл біля підніжжя лісу. 6 км від о. Синевир. Повна автономність.',
                 choose: 'Обрати будинок',
-                autonomous_title: 'Ваш комфорт незалежний',
-                autonomous_desc: 'Ми забезпечили повну автономність для вашого спокою.',
                 starlink: 'Starlink Інтернет',
                 generator: 'Потужні генератори',
-                road: 'Зручний підїзд',
-                reviews_title: 'Відгуки гостей',
-                footer_desc: 'Преміальний відпочинок у самому серці Карпат.',
-                contacts: 'Контакти'
+                price_from: 'від 1000 грн',
+                per_person: '/ особа',
+                view_photos: 'Дивитись фото →',
+                features: 'Особливості',
+                villa1_name: 'Вілла Лісова',
+                villa1_desc: 'Максимальна близькість до природи. Вихід у ліс прямо з тераси. Ідеально для тих, хто шукає тиші.',
+                villa2_name: 'Вілла Панорама',
+                villa2_desc: 'Велика вітальня для вечорів біля каміну та найкращий вид на захід сонця в горах.',
+                location_title: 'Локація',
+                reviews_title: 'Відгуки'
             },
             en: {
-                villas: 'Villas',
+                villas: 'Our Villas',
                 book: 'Book Now',
-                hero_title: 'SPADOK',
                 hero_subtitle: 'Where your roots regain strength',
                 hero_desc: 'Private villa complex at the foot of the forest. 6 km from Synevyr lake. Full autonomy.',
                 choose: 'Choose a Villa',
-                autonomous_title: 'Independent Comfort',
-                autonomous_desc: 'We provide full autonomy for your peace of mind.',
                 starlink: 'Starlink Internet',
                 generator: 'Powerful Generators',
-                road: 'Easy Access Road',
-                reviews_title: 'Guest Reviews',
-                footer_desc: 'Premium vacation in the heart of the Carpathians.',
-                contacts: 'Contacts'
+                price_from: 'from 1000 UAH',
+                per_person: '/ person',
+                view_photos: 'View Photos →',
+                features: 'Features',
+                villa1_name: 'Forest Villa',
+                villa1_desc: 'Maximum proximity to nature. Access to the forest directly from the terrace. Ideal for peace seekers.',
+                villa2_name: 'Panorama Villa',
+                villa2_desc: 'Large living room for evenings by the fireplace and the best sunset view in the mountains.',
+                location_title: 'Location',
+                reviews_title: 'Reviews'
             }
         }
     }" 
-    class="bg-darkbg text-cream font-sans antialiased relative">
+    class="bg-darkbg text-cream font-sans antialiased relative selection:bg-gold selection:text-darkbg">
 
     <div class="bg-noise"></div>
 
-    <nav class="fixed w-full z-50 bg-forest/95 backdrop-blur-md border-b border-cream/10 transition-all duration-300">
+    <nav class="fixed w-full z-50 bg-forest/85 backdrop-blur-md border-b border-white/5 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="h-14 md:h-20 w-40 md:w-64 flex items-center">
-                <img src="./img/logo1.png" alt="SPADOK" class="h-full w-full object-contain">
+            <div class="h-14 md:h-24 w-44 md:w-[300px] flex items-center">
+                <img src="./img/logo1.png" alt="SPADOK" class="h-full w-full object-contain filter drop-shadow-md">
             </div>
             
-            <div class="flex gap-4 md:gap-8 items-center">
-                <div class="flex border border-cream/20 rounded-full overflow-hidden text-[10px] font-bold uppercase tracking-tighter">
-                    <button @click="lang = 'uk'" :class="lang === 'uk' ? 'bg-gold text-darkbg' : 'text-cream'" class="px-3 py-1 transition">UA</button>
-                    <button @click="lang = 'en'" :class="lang === 'en' ? 'bg-gold text-darkbg' : 'text-cream'" class="px-3 py-1 transition">EN</button>
+            <div class="flex gap-4 items-center">
+                <div class="flex bg-black/20 rounded-lg p-1 text-[10px] font-bold border border-white/10">
+                    <button @click="lang = 'uk'" :class="lang === 'uk' ? 'bg-gold text-darkbg' : 'text-cream/50'" class="px-3 py-1.5 rounded-md transition uppercase">UA</button>
+                    <button @click="lang = 'en'" :class="lang === 'en' ? 'bg-gold text-darkbg' : 'text-cream/50'" class="px-3 py-1.5 rounded-md transition uppercase">EN</button>
                 </div>
-
-                <a href="#villas" class="text-xs uppercase tracking-widest text-cream/70 hover:text-gold transition hidden lg:block" x-text="t[lang].villas"></a>
-                <a href="#contacts" class="bg-gold text-darkbg font-bold py-2 px-5 rounded-lg cta-button-gold text-xs uppercase" x-text="t[lang].book"></a>
+                <a href="#contacts" class="bg-gold text-darkbg font-bold py-2.5 px-6 rounded-lg cta-button-gold text-xs uppercase tracking-wider" x-text="t[lang].book"></a>
             </div>
         </div>
     </nav>
 
     <header class="relative h-screen flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <img src="./img/IMG_3834.jpg" class="w-full h-full object-cover opacity-60">
+            <img src="./img/IMG_3834.jpg" class="w-full h-full object-cover opacity-50 scale-105">
         </div>
-        <div class="absolute inset-0 bg-gradient-to-t from-darkbg via-transparent to-forest/40 z-10"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-darkbg via-transparent to-forest/50 z-10"></div>
         
         <div class="relative z-20 text-center px-4 max-w-4xl mx-auto">
-            <h1 class="font-serif text-6xl md:text-9xl text-cream mb-4 tracking-tight" x-text="t[lang].hero_title"></h1>
-            <p class="text-xl md:text-3xl font-serif italic text-gold mb-8" x-text="t[lang].hero_subtitle"></p>
-            <p class="text-cream/80 text-sm md:text-lg mb-10 max-w-xl mx-auto font-light" x-text="t[lang].hero_desc"></p>
-            <a href="#villas" class="inline-block border-2 border-gold text-gold hover:bg-gold hover:text-darkbg px-10 py-3 rounded-lg font-bold uppercase tracking-widest transition-all" x-text="t[lang].choose"></a>
+            <h1 class="font-serif text-7xl md:text-9xl text-cream mb-4 tracking-tighter">SPADOK<span class="text-gold">.</span></h1>
+            <p class="text-xl md:text-3xl font-serif italic text-gold/90 mb-8" x-text="t[lang].hero_subtitle"></p>
+            <p class="text-cream/70 text-sm md:text-lg mb-10 max-w-xl mx-auto font-light leading-relaxed" x-text="t[lang].hero_desc"></p>
+            <a href="#villas" class="inline-block border border-gold/50 text-gold hover:bg-gold hover:text-darkbg px-12 py-4 rounded-lg font-bold uppercase tracking-[0.2em] transition-all text-xs" x-text="t[lang].choose"></a>
         </div>
     </header>
 
-    <section class="py-20 relative z-10 bg-forest/30">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <h2 class="font-serif text-3xl md:text-4xl mb-4" x-text="t[lang].autonomous_title"></h2>
-            <p class="text-cream/60 mb-12" x-text="t[lang].autonomous_desc"></p>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="p-6 glass-panel rounded-xl">
-                    <div class="text-gold text-3xl mb-4">📡</div>
-                    <h3 class="font-bold mb-2" x-text="t[lang].starlink"></h3>
-                    <p class="text-xs text-cream/50">Стабільний зв'язок 24/7 навіть у горах.</p>
-                </div>
-                <div class="p-6 glass-panel rounded-xl">
-                    <div class="text-gold text-3xl mb-4">⚡</div>
-                    <h3 class="font-bold mb-2" x-text="t[lang].generator"></h3>
-                    <p class="text-xs text-cream/50">Власна енергосистема на випадок відключень.</p>
-                </div>
-                <div class="p-6 glass-panel rounded-xl">
-                    <div class="text-gold text-3xl mb-4">🚗</div>
-                    <h3 class="font-bold mb-2" x-text="t[lang].road"></h3>
-                    <p class="text-xs text-cream/50">Легкий доїзд для будь-якого типу авто.</p>
-                </div>
+    <section class="py-16 relative z-10 border-y border-white/5 bg-forest/20">
+        <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-3 gap-12 text-center">
+            <div class="space-y-3">
+                <div class="text-gold text-3xl">📡</div>
+                <h4 class="font-bold text-sm uppercase tracking-widest" x-text="t[lang].starlink"></h4>
+                <p class="text-xs text-cream/40">High-speed internet everywhere</p>
+            </div>
+            <div class="space-y-3">
+                <div class="text-gold text-3xl">⚡</div>
+                <h4 class="font-bold text-sm uppercase tracking-widest" x-text="t[lang].generator"></h4>
+                <p class="text-xs text-cream/40">Full energy independence 24/7</p>
+            </div>
+            <div class="space-y-3">
+                <div class="text-gold text-3xl">🥘</div>
+                <h4 class="font-bold text-sm uppercase tracking-widest">Local Food</h4>
+                <p class="text-xs text-cream/40">Fresh breakfast included</p>
             </div>
         </div>
     </section>
 
     <section id="villas" class="py-24">
         <div class="max-w-7xl mx-auto px-4">
-            <h2 class="font-serif text-4xl mb-16 text-center" x-text="t[lang].villas"></h2>
-            <div class="grid md:grid-cols-2 gap-12">
-                <div class="group cursor-pointer" @click="openModal = 1">
-                    <div class="relative h-[400px] overflow-hidden rounded-2xl mb-6">
-                        <img src="./img/IMG_3832.jpg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
-                        <div class="absolute inset-0 bg-gradient-to-t from-forest/80 to-transparent"></div>
-                        <div class="absolute bottom-6 left-6">
-                            <h3 class="text-3xl font-serif">Villa Forest</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="group cursor-pointer" @click="openModal = 2">
-                    <div class="relative h-[400px] overflow-hidden rounded-2xl mb-6">
-                        <img src="./img/IMG_3828.jpg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
-                        <div class="absolute inset-0 bg-gradient-to-t from-forest/80 to-transparent"></div>
-                        <div class="absolute bottom-6 left-6">
-                            <h3 class="text-3xl font-serif">Villa Panorama</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-20 bg-forest/20">
-        <div class="max-w-5xl mx-auto px-4">
-            <h2 class="font-serif text-3xl text-center mb-12" x-text="t[lang].reviews_title"></h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="glass-panel p-8 rounded-2xl italic text-sm text-cream/80">
-                    "Найкращий досвід у Карпатах. Автономність справді працює, а чан під зорями — це щось неймовірне. Обов'язково повернемось!"
-                    <div class="mt-4 not-italic font-bold text-gold">— Олена, Київ</div>
-                </div>
-                <div class="glass-panel p-8 rounded-2xl italic text-sm text-cream/80">
-                    "Great place for digital nomads. Starlink was super fast, and the house is very cozy. The host was very helpful."
-                    <div class="mt-4 not-italic font-bold text-gold">— Michael, Poland</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer id="contacts" class="relative pt-20 pb-10 bg-gradient-to-b from-darkbg to-black border-t border-cream/5">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="grid md:grid-cols-4 gap-12 mb-16">
-                <div class="md:col-span-2">
-                    <img src="./img/logo.jpg" class="h-16 mb-6">
-                    <p class="text-cream/50 max-w-sm text-sm leading-relaxed" x-text="t[lang].footer_desc"></p>
-                </div>
-                <div>
-                    <h4 class="font-bold text-gold mb-6 uppercase text-xs tracking-widest" x-text="t[lang].contacts"></h4>
-                    <ul class="text-sm space-y-4 text-cream/70">
-                        <li>+38 (067) 000-00-00</li>
-                        <li>spadok.villas@gmail.com</li>
-                        <li>с. Синевирська Поляна</li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-bold text-gold mb-6 uppercase text-xs tracking-widest">Social</h4>
-                    <div class="flex gap-4">
-                        <a href="#" class="hover:text-gold transition">Instagram</a>
-                        <a href="#" class="hover:text-gold transition">Facebook</a>
-                    </div>
-                </div>
-            </div>
+            <h2 class="font-serif text-4xl md:text-6xl text-center mb-20 text-cream" x-text="t[lang].villas"></h2>
             
-            <div class="flex flex-col md:flex-row justify-center gap-6 mb-12 border-y border-cream/5 py-10">
-                <a href="tel:#" class="bg-gold text-darkbg font-bold py-4 px-10 rounded-xl cta-button-gold text-center">Call Us</a>
-                <a href="#" class="bg-[#2AABEE] text-cream font-bold py-4 px-10 rounded-xl flex items-center justify-center gap-2 cta-button-telegram">Telegram</a>
+            <div class="grid md:grid-cols-2 gap-16">
+                <div class="group cursor-pointer" @click="openModal = 1; activeImage = './img/IMG_3832.jpg'">
+                    <div class="relative h-[500px] overflow-hidden rounded-2xl border border-white/10">
+                        <img src="./img/IMG_3832.jpg" class="w-full h-full object-cover transition duration-1000 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-forest to-transparent opacity-80"></div>
+                        <div class="absolute bottom-10 left-10 right-10">
+                            <h3 class="font-serif text-4xl mb-4" x-text="t[lang].villa1_name"></h3>
+                            <p class="text-cream/70 text-sm mb-6 line-clamp-2" x-text="t[lang].villa1_desc"></p>
+                            <span class="text-gold text-xs font-bold uppercase tracking-widest border-b border-gold pb-1" x-text="t[lang].view_photos"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group cursor-pointer" @click="openModal = 2; activeImage = './img/IMG_3828.jpg'">
+                    <div class="relative h-[500px] overflow-hidden rounded-2xl border border-white/10">
+                        <img src="./img/IMG_3828.jpg" class="w-full h-full object-cover transition duration-1000 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-forest to-transparent opacity-80"></div>
+                        <div class="absolute bottom-10 left-10 right-10">
+                            <h3 class="font-serif text-4xl mb-4" x-text="t[lang].villa2_name"></h3>
+                            <p class="text-cream/70 text-sm mb-6 line-clamp-2" x-text="t[lang].villa2_desc"></p>
+                            <span class="text-gold text-xs font-bold uppercase tracking-widest border-b border-gold pb-1" x-text="t[lang].view_photos"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contacts" class="relative pt-24 pb-12 bg-forest overflow-hidden border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 relative z-10">
+            <div class="grid md:grid-cols-3 gap-16 mb-20">
+                <div class="space-y-6">
+                    <img src="./img/logo1.png" class="h-16">
+                    <p class="text-cream/40 text-sm leading-relaxed" x-text="lang === 'uk' ? 'Преміальний відпочинок у самому серці Карпат. Ми поєднали дику природу та сучасний комфорт.' : 'Premium vacation in the heart of the Carpathians. We combined wild nature and modern comfort.'"></p>
+                </div>
+                
+                <div class="space-y-6">
+                    <h4 class="text-gold uppercase tracking-[0.2em] text-xs font-bold">Contact Us</h4>
+                    <div class="space-y-4 text-cream/70 text-lg font-serif italic">
+                        <p>+38 (067) 000 00 00</p>
+                        <p>spadok.resort@gmail.com</p>
+                        <p class="text-sm font-sans not-italic text-cream/40">с. Синевирська Поляна, 12а</p>
+                    </div>
+                </div>
+
+                <div class="space-y-6 text-center md:text-left">
+                    <h4 class="text-gold uppercase tracking-[0.2em] text-xs font-bold">Quick Links</h4>
+                    <div class="flex flex-col gap-4 text-cream/60 text-sm">
+                        <a href="#" class="hover:text-gold transition">Instagram</a>
+                        <a href="#" class="hover:text-gold transition">Booking.com</a>
+                        <a href="#" class="hover:text-gold transition">AirBnb</a>
+                    </div>
+                </div>
             </div>
 
-            <p class="text-center text-[10px] text-cream/30 uppercase tracking-[0.3em]">© 2025 SPADOK Forest Villas • Crafted for Excellence</p>
+            <div class="flex flex-col md:flex-row gap-6 justify-center border-y border-white/5 py-12 mb-12">
+                <a href="tel:+" class="bg-gold text-darkbg font-bold py-4 px-12 rounded-xl cta-button-gold text-center uppercase text-sm">Call Manager</a>
+                <a href="#" class="bg-[#2AABEE] text-white font-bold py-4 px-12 rounded-xl cta-button-telegram flex items-center justify-center gap-3 uppercase text-sm">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.11.02-1.93 1.23-5.46 3.62-.51.35-.98.52-1.4.51-.46-.01-1.35-.26-2.01-.48-.81-.27-1.45-.42-1.39-.89.03-.24.36-.49.99-.75 3.88-1.69 6.46-2.8 7.74-3.35 3.69-1.55 4.45-1.82 4.95-1.83.11 0 .36.03.52.16.13.11.17.26.19.37.02.12.02.26.01.4z"/></svg>
+                    Telegram
+                </a>
+            </div>
+
+            <p class="text-center text-[10px] text-cream/20 uppercase tracking-[0.5em]">© 2025 SPADOK FOREST VILLAS • SYNEVYR</p>
         </div>
+        <div class="absolute -bottom-20 -right-20 w-64 h-64 bg-gold/5 rounded-full blur-3xl"></div>
     </footer>
 
-    <div x-show="openModal" class="fixed inset-0 z-[100] bg-black/95 backdrop-blur-xl flex items-center justify-center p-4" x-cloak>
-        <button @click="openModal = null" class="absolute top-6 right-6 text-cream text-4xl">&times;</button>
-        <div class="text-center">
-            <p class="text-gold font-serif text-2xl">Галерея в розробці...</p>
-            <button @click="openModal = null" class="mt-4 text-cream/50 underline">Закрити</button>
+    <template x-if="openModal">
+        <div class="fixed inset-0 z-[100] flex items-center justify-center p-4">
+            <div class="absolute inset-0 bg-darkbg/95 backdrop-blur-xl" @click="openModal = null"></div>
+            
+            <div class="bg-forest w-full max-w-6xl h-[90vh] rounded-3xl overflow-hidden relative flex flex-col md:flex-row shadow-2xl border border-white/10">
+                <button @click="openModal = null" class="absolute top-6 right-6 z-50 text-cream/50 hover:text-gold transition text-3xl">&times;</button>
+
+                <div class="w-full md:w-2/3 h-1/2 md:h-full bg-black">
+                    <img :src="activeImage" class="w-full h-full object-cover">
+                </div>
+
+                <div class="w-full md:w-1/3 h-1/2 md:h-full flex flex-col p-8 custom-scrollbar overflow-y-auto">
+                    <h3 class="font-serif text-4xl text-cream mb-2" x-text="openModal === 1 ? t[lang].villa1_name : t[lang].villa2_name"></h3>
+                    <p class="text-gold text-xl font-serif mb-8" x-text="t[lang].price_from + ' ' + t[lang].per_person"></p>
+                    
+                    <p class="text-cream/60 text-sm leading-relaxed mb-8" x-text="openModal === 1 ? t[lang].villa1_desc : t[lang].villa2_desc"></p>
+
+                    <h4 class="text-xs font-bold uppercase tracking-widest text-cream mb-4" x-text="t[lang].features"></h4>
+                    <div class="space-y-3 mb-12">
+                        <template x-for="feat in (lang === 'uk' ? ['5 спалень', 'Власний чан', 'Зона BBQ', 'Starlink'] : ['5 bedrooms', 'Private vat', 'BBQ zone', 'Starlink'])">
+                            <div class="flex items-center text-sm text-cream/80 italic">
+                                <span class="text-gold mr-3">✓</span> <span x-text="feat"></span>
+                            </div>
+                        </template>
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-2 mb-8">
+                        <template x-for="img in (openModal === 1 ? ['./img/IMG_3832.jpg', './img/IMG_3724.jpg', './img/IMG_3830.jpg'] : ['./img/IMG_3828.jpg', './img/IMG_3834.jpg', './img/IMG_3841.jpg'])">
+                            <img :src="img" @click="activeImage = img" class="h-20 w-full object-cover rounded-lg cursor-pointer hover:border-gold border-2 border-transparent transition">
+                        </template>
+                    </div>
+
+                    <a href="#contacts" @click="openModal = null" class="mt-auto block w-full bg-gold text-darkbg text-center font-bold py-4 rounded-xl uppercase text-xs tracking-widest cta-button-gold" x-text="t[lang].book"></a>
+                </div>
+            </div>
         </div>
-    </div>
+    </template>
 
 </body>
 </html>
