@@ -21,7 +21,7 @@
                     },
                     fontFamily: {
                         // Namu 1910 для заголовків (з резервом)
-                        heading: ['"Namu 1910"', 'Times New Roman', 'serif'],
+                        h1: ['"Namu 1910"', 'Times New Roman', 'serif'],
                         // Montserrat для тексту
                         body: ['Montserrat', 'sans-serif'],
                     }
@@ -168,10 +168,10 @@
         </div>
         
         <div class="relative z-10 text-center px-4 max-w-4xl mx-auto mt-20">
-            <h1 class="font-heading text-6xl md:text-[110px] text-white mb-6 leading-none shadow-sm tracking-tight">SPADOK</h1>
+            <h1 class="font-h1 text-6xl md:text-[110px] text-white mb-6 leading-none shadow-sm tracking-tight">SPADOK</h1>
             <p class="text-xl md:text-2xl font-heading text-white/90 mb-8" x-text="t[lang].hero_sub"></p>
             
-            <div class="bg-paper/95 backdrop-blur-md p-8 md:p-12 max-w-2xl mx-auto rounded-sm shadow-2xl border border-white/50">
+            <div class="bg-paper/75 backdrop-blur-md p-8 md:p-12 max-w-2xl mx-auto rounded-sm shadow-2xl border border-white/50">
                 <p class="text-wood text-sm md:text-base mb-8 leading-relaxed font-light italic" x-text="t[lang].hero_desc"></p>
                 <a href="#villas" class="block w-full md:w-auto md:inline-block border-b border-forest text-forest hover:text-wood pb-1 uppercase text-[11px] tracking-[0.2em] font-bold transition" x-text="t[lang].hero_cta"></a>
             </div>
