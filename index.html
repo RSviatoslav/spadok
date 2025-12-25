@@ -3,112 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SPADOK Forest Villas | Synevyr Retreat</title>
+    <title>SPADOK Forest Villas</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        paper: '#EDE9E4',      /* Молочно-бежевий фон */
-                        forest: '#2C3424',     /* Глибокий зелений (Заголовки) */
-                        wood: '#4B4139',       /* Темно-коричневий (Текст) */
-                        gold: '#C5A059',       /* Акцент */
-                        white: '#FFFFFF',
-                    },
-                    fontFamily: {
-                        // Namu 1910 для заголовків (з резервом)
-                        h1: ['"Namu 1910"', 'Times New Roman', 'serif'],
-                        // Montserrat для тексту
-                        body: ['Montserrat', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
+        body { font-family: 'Montserrat', sans-serif; background-color: #EDE9E4; }
+        .font-heading { font-family: 'Playfair Display', serif; }
         [x-cloak] { display: none !important; }
-        
-        /* Якщо у вас є файл шрифту, покладіть його в папку fonts */
-        @font-face {
-            font-family: 'Namu 1910';
-            src: url('./fonts/NAMU-1910.woff2') format('woff2');
-            font-weight: normal;
-            font-style: normal;
-        }
-
-        /* Текстура паперу */
-        .bg-texture {
-            background-color: #EDE9E4;
-            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%234b4139' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
-        }
-
-        /* Кнопка */
-        .btn-forest {
-            background-color: #2C3424;
-            color: #EDE9E4;
-            transition: all 0.4s ease;
-        }
-        .btn-forest:hover {
-            background-color: #3A4530;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px -5px rgba(44, 52, 36, 0.4);
-        }
-
-        /* Скролбар */
-        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
-        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: #2C3424; border-radius: 4px; }
     </style>
 </head>
-<body 
-    x-data="{ 
-        openMenu: false,
-        siteData: { villas: [], restaurant_menu: [] },
-        async init() {
-            try {
-                const response = await fetch('data.json');
-                if (!response.ok) throw new Error('Network response was not ok');
-                this.siteData = await response.json();
-            } catch (error) {
-                console.error('Помилка завантаження даних:', error);
-                // Тут можна додати дефолтні дані, щоб сайт не був порожнім
-            }
-        }
-    }" 
-    class="bg-[#EDE9E4] text-stone-800 antialiased font-sans">
+<body x-data="{ 
+    openMenu: false, 
+    viewers: Math.floor(Math.random() * 10 + 5),
+    siteData: { villas: [], restaurant_menu: [] },
+    async init() {
+        try {
+            const response = await fetch('data.json');
+            this.siteData = await response.json();
+        } catch (e) { console.error('Data load error'); }
+    }
+}">
 
-    <section id="villas" class="py-20 max-w-7xl mx-auto px-6">
-        <div class="grid md:grid-cols-2 gap-8">
+    <nav class="fixed w-full z-50 bg-[#EDE9E4]/90 backdrop-blur-md px-10 py-6 flex justify-between items-center">
+        <div class="font-bold text-xl tracking-tighter">SPADOK</div>
+        <div class="flex gap-8 text-[10px] uppercase tracking-[0.2em] font-bold">
+            <a href="#villas" class="hover:opacity-50 transition">Вілли</a>
+            <button @click="openMenu = true" class="hover:opacity-50 transition">Меню</button>
+            <a href="#route" class="hover:opacity-50 transition">Маршрут</a>
+            <a href="#contacts" class="hover:opacity-50 transition">Контакти</a>
+        </div>
+    </nav>
+
+    <section id="villas" class="pt-40 pb-20 max-w-7xl mx-auto px-6">
+        <div class="grid md:grid-cols-2 gap-10">
             <template x-for="villa in siteData.villas" :key="villa.id">
-                <div class="bg-[#1A1C18] text-white rounded-2xl overflow-hidden flex flex-col md:flex-row shadow-2xl">
-                    <div class="md:w-1/2">
+                <div class="bg-[#1A1C18] rounded-[30px] overflow-hidden flex flex-col md:flex-row shadow-2xl">
+                    <div class="md:w-1/2 h-[400px] md:h-auto">
                         <img :src="villa.image" class="w-full h-full object-cover">
                     </div>
-                    <div class="md:w-1/2 p-8 flex flex-col">
-                        <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-3xl font-light" x-text="villa.name"></h3>
-                            <button class="text-white/50 hover:text-white">✕</button>
-                        </div>
-                        <p class="text-[#C4A454] font-medium mb-6" x-text="villa.price"></p>
-                        <p class="text-sm text-white/70 leading-relaxed mb-8" x-text="villa.description"></p>
+                    <div class="md:w-1/2 p-10 flex flex-col text-white">
+                        <h3 class="font-heading text-4xl mb-2" x-text="villa.name"></h3>
+                        <p class="text-[#D4AF37] text-sm mb-6 font-semibold" x-text="villa.price"></p>
+                        <p class="text-xs text-white/60 leading-relaxed mb-8" x-text="villa.description"></p>
                         
                         <div class="mb-10">
-                            <p class="text-[10px] uppercase tracking-widest text-white/40 mb-4 font-bold">Особливості</p>
-                            <div class="grid grid-cols-2 gap-y-3">
-                                <template x-for="feature in villa.features">
-                                    <div class="flex items-center gap-2 text-xs">
-                                        <span class="text-[#C4A454]">✓</span>
-                                        <span x-text="feature"></span>
+                            <p class="text-[9px] uppercase tracking-[0.2em] text-white/30 font-bold mb-4">Особливості</p>
+                            <div class="grid grid-cols-2 gap-3">
+                                <template x-for="feat in villa.features">
+                                    <div class="flex items-center gap-2 text-[11px] text-white/80">
+                                        <span class="text-[#D4AF37]">✓</span>
+                                        <span x-text="feat"></span>
                                     </div>
                                 </template>
                             </div>
                         </div>
 
-                        <button class="mt-auto bg-[#D4AF37] hover:bg-[#C4A454] text-[#1A1C18] py-4 rounded-xl font-bold uppercase text-[11px] tracking-widest transition-all">
+                        <button class="w-full bg-[#D4AF37] hover:bg-white text-[#1A1C18] py-4 rounded-xl font-bold uppercase text-[10px] tracking-widest transition-all">
                             Забронювати
                         </button>
                     </div>
@@ -116,6 +67,46 @@
             </template>
         </div>
     </section>
+
+    <div x-show="openMenu" x-cloak class="fixed inset-0 z-[100] flex items-center justify-center p-6">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-lg" @click="openMenu = false"></div>
+        <div class="bg-[#1A1C18] text-white w-full max-w-3xl h-[85vh] rounded-[40px] relative z-10 overflow-hidden flex flex-col shadow-2xl border border-white/5">
+            <button @click="openMenu = false" class="absolute top-8 right-10 text-xl text-white/20 hover:text-white transition">✕</button>
+            
+            <div class="p-16 overflow-y-auto flex-grow custom-scrollbar">
+                <h2 class="font-heading text-5xl text-center mb-16 tracking-tight">Наше Меню</h2>
+                
+                <template x-for="cat in siteData.restaurant_menu">
+                    <div class="mb-16">
+                        <h4 class="text-[10px] uppercase tracking-[0.3em] text-[#D4AF37] mb-8 font-bold border-b border-white/5 pb-2" x-text="cat.category"></h4>
+                        <div class="space-y-6">
+                            <template x-for="item in cat.items">
+                                <div class="flex justify-between items-end border-b border-white/5 pb-2">
+                                    <div class="max-w-[70%]">
+                                        <p class="text-sm font-medium mb-1" x-text="item.name"></p>
+                                        <p class="text-[10px] text-white/30 uppercase tracking-widest" x-text="item.desc"></p>
+                                    </div>
+                                    <p class="font-heading text-lg text-[#D4AF37]" x-text="item.price + ' ₴'"></p>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed bottom-8 left-8 bg-white p-4 rounded-xl shadow-2xl border-l-4 border-[#D4AF37] z-50">
+        <div class="flex items-center gap-3">
+            <span class="flex h-2 w-2 relative">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+            </span>
+            <p class="text-[10px] font-bold text-stone-600 uppercase tracking-tight">
+                Сайт переглядають ще <span class="text-black" x-text="viewers"></span> осіб
+            </p>
+        </div>
+    </div>
 
 </body>
 </html>
