@@ -3,108 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SPADOK Forest Villas</title>
+    <title>SPADOK Forest Villas | Синевирська Поляна</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+
     <style>
-        body { font-family: 'Montserrat', sans-serif; background-color: #EDE9E4; }
+        body { font-family: 'Montserrat', sans-serif; background-color: #EDE9E4; color: #1A1C18; }
         .font-heading { font-family: 'Playfair Display', serif; }
         [x-cloak] { display: none !important; }
+        
+        /* Стиль картки як на скріншоті */
+        .villa-card {
+            background-color: #1A1C18;
+            border-radius: 40px;
+            overflow: hidden;
+            display: flex;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 10px; }
     </style>
 </head>
-<body x-data="{ 
-    openMenu: false, 
-    viewers: Math.floor(Math.random() * 10 + 5),
-    siteData: { villas: [], restaurant_menu: [] },
-    async init() {
-        try {
-            const response = await fetch('data.json');
-            this.siteData = await response.json();
-        } catch (e) { console.error('Data load error'); }
-    }
-}">
+<body x-data="{ openMenu: false, viewers: 13, showUrgency: true }">
 
-    <nav class="fixed w-full z-50 bg-[#EDE9E4]/90 backdrop-blur-md px-10 py-6 flex justify-between items-center">
-        <div class="font-bold text-xl tracking-tighter">SPADOK</div>
-        <div class="flex gap-8 text-[10px] uppercase tracking-[0.2em] font-bold">
-            <a href="#villas" class="hover:opacity-50 transition">Вілли</a>
-            <button @click="openMenu = true" class="hover:opacity-50 transition">Меню</button>
-            <a href="#route" class="hover:opacity-50 transition">Маршрут</a>
-            <a href="#contacts" class="hover:opacity-50 transition">Контакти</a>
+    <nav class="fixed w-full z-50 bg-[#EDE9E4]/90 backdrop-blur-md px-6 md:px-16 py-8 flex justify-between items-center">
+        <div class="font-bold text-2xl tracking-tighter uppercase">SPADOK</div>
+        <div class="hidden md:flex gap-12 text-[10px] uppercase tracking-[0.3em] font-bold">
+            <a href="#villas" class="hover:text-[#D4AF37] transition">Вілли</a>
+            <button @click="openMenu = true" class="hover:text-[#D4AF37] transition">Меню</button>
+            <a href="#route" class="hover:text-[#D4AF37] transition">Маршрут</a>
+            <a href="#contacts" class="hover:text-[#D4AF37] transition">Контакти</a>
         </div>
     </nav>
 
-    <section id="villas" class="pt-40 pb-20 max-w-7xl mx-auto px-6">
-        <div class="grid md:grid-cols-2 gap-10">
-            <template x-for="villa in siteData.villas" :key="villa.id">
-                <div class="bg-[#1A1C18] rounded-[30px] overflow-hidden flex flex-col md:flex-row shadow-2xl">
-                    <div class="md:w-1/2 h-[400px] md:h-auto">
-                        <img :src="villa.image" class="w-full h-full object-cover">
-                    </div>
-                    <div class="md:w-1/2 p-10 flex flex-col text-white">
-                        <h3 class="font-heading text-4xl mb-2" x-text="villa.name"></h3>
-                        <p class="text-[#D4AF37] text-sm mb-6 font-semibold" x-text="villa.price"></p>
-                        <p class="text-xs text-white/60 leading-relaxed mb-8" x-text="villa.description"></p>
-                        
-                        <div class="mb-10">
-                            <p class="text-[9px] uppercase tracking-[0.2em] text-white/30 font-bold mb-4">Особливості</p>
-                            <div class="grid grid-cols-2 gap-3">
-                                <template x-for="feat in villa.features">
-                                    <div class="flex items-center gap-2 text-[11px] text-white/80">
-                                        <span class="text-[#D4AF37]">✓</span>
-                                        <span x-text="feat"></span>
-                                    </div>
-                                </template>
-                            </div>
-                        </div>
-
-                        <button class="w-full bg-[#D4AF37] hover:bg-white text-[#1A1C18] py-4 rounded-xl font-bold uppercase text-[10px] tracking-widest transition-all">
-                            Забронювати
-                        </button>
-                    </div>
-                </div>
-            </template>
+    <section class="pt-48 pb-16">
+        <div class="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-12">
+            <div class="flex flex-col items-center text-center">
+                <svg class="w-10 h-10 mb-5 text-black/20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1" d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                <span class="text-[10px] uppercase tracking-[0.2em] font-bold opacity-60">Енергія 24/7</span>
+            </div>
+            <div class="flex flex-col items-center text-center">
+                <svg class="w-10 h-10 mb-5 text-black/20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1" d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span class="text-[10px] uppercase tracking-[0.2em] font-bold opacity-60">Starlink</span>
+            </div>
+            <div class="flex flex-col items-center text-center">
+                <svg class="w-10 h-10 mb-5 text-black/20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7"/></svg>
+                <span class="text-[10px] uppercase tracking-[0.2em] font-bold opacity-60">Опалення</span>
+            </div>
+            <div class="flex flex-col items-center text-center">
+                <svg class="w-10 h-10 mb-5 text-black/20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1" d="M12 21.5c-4.142 0-7.5-3.358-7.5-7.5 0-4.5 7.5-12 7.5-12s7.5 7.5 7.5 12c0 4.142-3.358 7.5-7.5 7.5z"/></svg>
+                <span class="text-[10px] uppercase tracking-[0.2em] font-bold opacity-60">Власна вода</span>
+            </div>
         </div>
     </section>
 
-    <div x-show="openMenu" x-cloak class="fixed inset-0 z-[100] flex items-center justify-center p-6">
-        <div class="absolute inset-0 bg-black/60 backdrop-blur-lg" @click="openMenu = false"></div>
-        <div class="bg-[#1A1C18] text-white w-full max-w-3xl h-[85vh] rounded-[40px] relative z-10 overflow-hidden flex flex-col shadow-2xl border border-white/5">
-            <button @click="openMenu = false" class="absolute top-8 right-10 text-xl text-white/20 hover:text-white transition">✕</button>
-            
-            <div class="p-16 overflow-y-auto flex-grow custom-scrollbar">
-                <h2 class="font-heading text-5xl text-center mb-16 tracking-tight">Наше Меню</h2>
-                
-                <template x-for="cat in siteData.restaurant_menu">
-                    <div class="mb-16">
-                        <h4 class="text-[10px] uppercase tracking-[0.3em] text-[#D4AF37] mb-8 font-bold border-b border-white/5 pb-2" x-text="cat.category"></h4>
-                        <div class="space-y-6">
-                            <template x-for="item in cat.items">
-                                <div class="flex justify-between items-end border-b border-white/5 pb-2">
-                                    <div class="max-w-[70%]">
-                                        <p class="text-sm font-medium mb-1" x-text="item.name"></p>
-                                        <p class="text-[10px] text-white/30 uppercase tracking-widest" x-text="item.desc"></p>
-                                    </div>
-                                    <p class="font-heading text-lg text-[#D4AF37]" x-text="item.price + ' ₴'"></p>
-                                </div>
-                            </template>
+    <section id="villas" class="py-12 px-6">
+        <div class="max-w-5xl mx-auto">
+            <div class="villa-card flex flex-col md:row relative">
+                <button class="absolute top-8 right-10 text-white/30 hover:text-white text-xl z-10">✕</button>
+                <div class="md:w-[45%] h-[400px] md:h-auto overflow-hidden">
+                    <img src="./img/IMG_3832.jpg" alt="Вілла Лісова" class="w-full h-full object-cover">
+                </div>
+                <div class="md:w-[55%] p-10 md:p-16 text-white flex flex-col">
+                    <h3 class="font-heading text-5xl mb-3">Вілла Лісова</h3>
+                    <p class="text-[#D4AF37] font-semibold text-lg mb-8">від 1000 грн / особа</p>
+                    <p class="text-sm text-white/60 leading-relaxed mb-10 font-light">
+                        Максимальна близькість до природи. Вихід у ліс прямо з тераси. Ідеально для тих, хто шукає тиші.
+                    </p>
+                    
+                    <div class="mb-12">
+                        <p class="text-[10px] uppercase tracking-[0.3em] text-white/30 font-bold mb-6">Особливості</p>
+                        <div class="grid grid-cols-2 gap-y-4">
+                            <div class="flex items-center gap-3 text-[11px]"><span class="text-[#D4AF37]">✓</span> 5 спалень</div>
+                            <div class="flex items-center gap-3 text-[11px]"><span class="text-[#D4AF37]">✓</span> Власний чан</div>
+                            <div class="flex items-center gap-3 text-[11px]"><span class="text-[#D4AF37]">✓</span> Зона BBQ</div>
+                            <div class="flex items-center gap-3 text-[11px]"><span class="text-[#D4AF37]">✓</span> Starlink</div>
                         </div>
                     </div>
-                </template>
+
+                    <a href="https://wa.me/380635411331" class="w-full bg-[#D4AF37] hover:bg-white text-black py-5 rounded-2xl font-bold uppercase text-[11px] tracking-[0.2em] transition-all text-center">
+                        Забронювати
+                    </a>
+                </div>
             </div>
         </div>
+    </section>
+
+    <div x-show="showUrgency" class="fixed bottom-10 left-10 z-50 bg-white py-4 px-6 rounded-2xl shadow-2xl flex items-center gap-4 border border-black/5">
+        <span class="flex h-2 w-2 relative">
+            <span class="animate-ping absolute h-full w-full rounded-full bg-red-400 opacity-75"></span>
+            <span class="relative rounded-full h-2 w-2 bg-red-500"></span>
+        </span>
+        <p class="text-[10px] font-bold text-black/50 uppercase tracking-tight">
+            Сайт переглядають ще <span class="text-black" x-text="viewers"></span> осіб
+        </p>
     </div>
 
-    <div class="fixed bottom-8 left-8 bg-white p-4 rounded-xl shadow-2xl border-l-4 border-[#D4AF37] z-50">
-        <div class="flex items-center gap-3">
-            <span class="flex h-2 w-2 relative">
-                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
-            </span>
-            <p class="text-[10px] font-bold text-stone-600 uppercase tracking-tight">
-                Сайт переглядають ще <span class="text-black" x-text="viewers"></span> осіб
-            </p>
+    <div x-show="openMenu" x-cloak class="fixed inset-0 z-[100] flex items-center justify-center p-6" x-transition>
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-xl" @click="openMenu = false"></div>
+        <div class="bg-[#1A1C18] text-white w-full max-w-3xl h-[85vh] rounded-[40px] relative z-10 overflow-hidden flex flex-col border border-white/10">
+            <button @click="openMenu = false" class="absolute top-10 right-12 text-white/30 hover:text-white text-2xl">✕</button>
+            
+            <div class="p-12 md:p-20 overflow-y-auto flex-grow custom-scrollbar">
+                <h2 class="font-heading text-6xl text-center mb-20 tracking-tighter">Наше Меню</h2>
+                
+                <div class="mb-16">
+                    <h4 class="text-[#D4AF37] text-[10px] uppercase tracking-[0.4em] font-bold mb-8 border-b border-white/5 pb-3">Сніданок [cite: 2]</h4>
+                    <div class="space-y-6">
+                        <div class="flex justify-between items-end"><div class="text-sm">Налисники (Сир/М'ясо) [cite: 3] <p class="text-[9px] text-white/30 uppercase tracking-widest mt-1">4шт [cite: 4]</p></div> <p class="font-heading text-xl text-[#D4AF37]">200 грн [cite: 4]</p></div>
+                        <div class="flex justify-between items-end"><div class="text-sm">Сирники (Сметана/Варення) [cite: 5] <p class="text-[9px] text-white/30 uppercase tracking-widest mt-1">4шт [cite: 6]</p></div> <p class="font-heading text-xl text-[#D4AF37]">185 грн [cite: 6]</p></div>
+                        <div class="flex justify-between items-end"><div class="text-sm">Яєшня (Бекон/Шинка) [cite: 7, 9] <p class="text-[9px] text-white/30 uppercase tracking-widest mt-1">2шт [cite: 8]</p></div> <p class="font-heading text-xl text-[#D4AF37]">100 грн [cite: 8]</p></div>
+                    </div>
+                </div>
+
+                <div class="mb-16">
+                    <h4 class="text-[#D4AF37] text-[10px] uppercase tracking-[0.4em] font-bold mb-8 border-b border-white/5 pb-3">Перші страви [cite: 12]</h4>
+                    <div class="space-y-6">
+                        <div class="flex justify-between items-end"><div class="text-sm">Борщ Український червоний [cite: 13, 15] <p class="text-[9px] text-white/30 uppercase tracking-widest mt-1">300г [cite: 14]</p></div> <p class="font-heading text-xl text-[#D4AF37]">165 грн [cite: 14]</p></div>
+                        <div class="flex justify-between items-end"><div class="text-sm">Бограч Закарпатський [cite: 16, 18] <p class="text-[9px] text-white/30 uppercase tracking-widest mt-1">300г [cite: 17]</p></div> <p class="font-heading text-xl text-[#D4AF37]">215 грн [cite: 17]</p></div>
+                        <div class="flex justify-between items-end"><div class="text-sm">Грибна юшка (з карпатських білих грибів) [cite: 19, 21] <p class="text-[9px] text-white/30 uppercase tracking-widest mt-1">300г [cite: 20]</p></div> <p class="font-heading text-xl text-[#D4AF37]">175 грн [cite: 20]</p></div>
+                    </div>
+                </div>
+
+                <div class="mb-16">
+                    <h4 class="text-[#D4AF37] text-[10px] uppercase tracking-[0.4em] font-bold mb-8 border-b border-white/5 pb-3">Алкогольна карта [cite: 33]</h4>
+                    <div class="space-y-6">
+                        <div class="flex justify-between items-end"><div class="text-sm">Finlandia [cite: 35] <p class="text-[9px] text-white/30 uppercase tracking-widest mt-1">0.5л [cite: 37]</p></div> <p class="font-heading text-xl text-[#D4AF37]">380 грн [cite: 37]</p></div>
+                        <div class="flex justify-between items-end"><div class="text-sm">Hankey Bannister [cite: 49] <p class="text-[9px] text-white/30 uppercase tracking-widest mt-1">0.7л [cite: 49]</p></div> <p class="font-heading text-xl text-[#D4AF37]">410 грн [cite: 49]</p></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
