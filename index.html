@@ -3,141 +3,675 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SPADOK Forest Villas | Синевирська Поляна</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <title>SPADOK Forest Villas — вілли біля озера Синевир | Карпати</title>
 
+    <meta name="description"
+    content="SPADOK Forest Villas — приватні вілли в лісі біля озера Синевир. Камін, чан, Starlink, повна автономність. Відпочинок у Карпатах.">
+
+    <link rel="canonical" href="https://your-domain.com/">
+
+    <link rel="alternate" hreflang="uk" href="https://your-domain.com/">
+    <link rel="alternate" hreflang="en" href="https://your-domain.com/en/">
+    <link rel="alternate" hreflang="x-default" href="https://your-domain.com/">
+
+    <meta property="og:title" content="SPADOK Forest Villas — відпочинок у Карпатах">
+    <meta property="og:description" content="Приватні вілли в лісі біля озера Синевир. Камін, чан, Starlink.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="uk_UA">
+    <meta property="og:image" content="https://your-domain.com/img/IMG_3834.webp">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+        <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        paper: '#EDE9E4',      /* Молочно-бежевий фон */
+                        forest: '#2C3424',     /* Глибокий зелений (Заголовки) */
+                        wood: '#4B4139',       /* Темно-коричневий (Текст) */
+                        gold: '#C5A059',       /* Акцент */
+                        white: '#FFFFFF',
+                    },
+                    fontFamily: {
+                        // Namu 1910 для заголовків (з резервом)
+                        h1: ['"Namu 1910"', 'Times New Roman', 'serif'],
+                        // Montserrat для тексту
+                        body: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        body { font-family: 'Montserrat', sans-serif; background-color: #EDE9E4; color: #1A1C18; }
-        .font-heading { font-family: 'Playfair Display', serif; }
         [x-cloak] { display: none !important; }
         
-        /* Стиль картки як на скріншоті */
-        .villa-card {
-            background-color: #1A1C18;
-            border-radius: 40px;
-            overflow: hidden;
-            display: flex;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        /* Якщо у вас є файл шрифту, покладіть його в папку fonts */
+        @font-face {
+            font-family: 'Namu 1910';
+            src: url('./fonts/NAMU-1910.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
         }
-        
+
+        /* Текстура паперу */
+        .bg-texture {
+            background-color: #EDE9E4;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%234b4139' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+
+        /* Кнопка */
+        .btn-forest {
+            background-color: #2C3424;
+            color: #EDE9E4;
+            transition: all 0.4s ease;
+        }
+        .btn-forest:hover {
+            background-color: #3A4530;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(44, 52, 36, 0.4);
+        }
+
+        /* Скролбар */
         .custom-scrollbar::-webkit-scrollbar { width: 4px; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #2C3424; border-radius: 4px; }
     </style>
 </head>
-<body x-data="{ openMenu: false, viewers: 13, showUrgency: true }">
+<body 
+    x-data="{ 
+        lang: 'uk', 
+        openModal: null, 
+        openMenu: false,  /* НОВА ЗМІННА */
+        activeImage: '',
+        faqOpen: null,
+        t: {
+            uk: {
+                nav_villas: 'Вілли',
+                nav_food: 'Меню',
+                nav_faq: 'Інфо',
+                nav_reviews: 'Вігуки',
+                book: 'Забронювати',
+                
+                hero_sub: 'Відновлення сили вашого роду',
+                hero_desc: 'Приватні вілли в самому серці лісу. 6 км до озера Синевир. Повна автономність.',
+                hero_cta: 'Обрати віллу',
 
-    <nav class="fixed w-full z-50 bg-[#EDE9E4]/90 backdrop-blur-md px-6 md:px-16 py-8 flex justify-between items-center">
-        <div class="font-bold text-2xl tracking-tighter uppercase">SPADOK</div>
-        <div class="hidden md:flex gap-12 text-[10px] uppercase tracking-[0.3em] font-bold">
-            <a href="#villas" class="hover:text-[#D4AF37] transition">Вілли</a>
-            <button @click="openMenu = true" class="hover:text-[#D4AF37] transition">Меню</button>
-            <a href="#route" class="hover:text-[#D4AF37] transition">Маршрут</a>
-            <a href="#contacts" class="hover:text-[#D4AF37] transition">Контакти</a>
+                villas_title: 'Колекція Вілл',
+                v1_name: 'Вілла Лісова',
+                v1_desc: 'Максимальна близькість до природи. Вихід у ліс прямо з тераси. Ідеально для тих, хто шукає тиші.',
+                v2_name: 'Вілла Панорама',
+                v2_desc: 'Велика вітальня для компаній. Панорамні вікна з видом на гори, камін та простір для спільних вечорів.',
+                per_person: '/ особа',
+                features_title: 'Особливості',
+
+                menu_title: 'Меню Spadok',
+                menu_sub: 'Локальні продукти • Авторська подача',
+                
+                faq_title: 'Важливі Деталі',
+                location_title: 'Локація',
+                contact_title: 'Контакти',
+                
+                // Структура меню для модалки
+                menu_categories: [
+                    {
+                        name: 'Сніданки',
+                        items: [
+                            { name: 'Налисники (Сир/М\'ясо)', desc: '4шт • 200г', price: '200 ₴' },
+                            { name: 'Сирники Домашні', desc: '4шт • Сметана/Варення', price: '185 ₴' },
+                            { name: 'Яєшня з беконом', desc: '2 яйця • Бекон/Шинка', price: '160 ₴' }
+                        ]
+                    },
+                    {
+                        name: 'Основні страви',
+                        items: [
+                            { name: 'Бограч Закарпатський', desc: '300г • Гострий • М\'ясний', price: '215 ₴' },
+                            { name: 'Банош з Бринзою', desc: '300г • Шкварки', price: '215 ₴' },
+                            { name: 'Грибна Юшка', desc: '300г • Білі гриби', price: '175 ₴' },
+                            { name: 'Деруни зі сметаною', desc: '4шт • 250г', price: '155 ₴' }
+                        ]
+                    },
+                    {
+                        name: 'Напої',
+                        items: [
+                            { name: 'Наливки Домашні', desc: '50г • Вишня/Слива/Мед', price: '60 ₴' },
+                            { name: 'Карпатський Чай', desc: 'Чайник 500мл', price: '80 ₴' },
+                            { name: 'Узвар', desc: '250мл', price: '40 ₴' }
+                        ]
+                    }
+                ]
+            },
+            en: {
+                nav_villas: 'Villas',
+                nav_food: 'Menu',
+                nav_faq: 'Info',
+                nav_reviews: 'Reviews',
+                book: 'Book Now',
+                
+                hero_sub: 'Restoring your family strength',
+                hero_desc: 'Private villas in the heart of the forest. 6 km to Synevyr Lake. Full autonomy.',
+                hero_cta: 'Choose a Villa',
+
+                villas_title: 'Villa Collection',
+                v1_name: 'Forest Villa',
+                v1_desc: 'Maximum proximity to nature. Access to the forest directly from the terrace. Ideal for silence seekers.',
+                v2_name: 'Panorama Villa',
+                v2_desc: 'Large living room for groups. Panoramic mountain views, fireplace, and space for shared evenings.',
+                per_person: '/ person',
+                features_title: 'Features',
+
+                menu_title: 'Spadok Menu',
+                menu_sub: 'Local products • Author\'s presentation',
+
+                faq_title: 'Important Details',
+                location_title: 'Location',
+                contact_title: 'Contacts',
+
+                menu_categories: [
+                    {
+                        name: 'Breakfast',
+                        items: [
+                            { name: 'Crepes (Cheese/Meat)', desc: '4pcs • 200g', price: '200 ₴' },
+                            { name: 'Homemade Syrniki', desc: '4pcs • Sour cream/Jam', price: '185 ₴' },
+                            { name: 'Fried Eggs with Bacon', desc: '2 eggs • Bacon/Ham', price: '160 ₴' }
+                        ]
+                    },
+                    {
+                        name: 'Main Courses',
+                        items: [
+                            { name: 'Transcarpathian Bograch', desc: '300g • Spicy • Meat soup', price: '215 ₴' },
+                            { name: 'Banosh with Bryndza', desc: '300g • Cracklings', price: '215 ₴' },
+                            { name: 'Mushroom Soup', desc: '300g • Porcini mushrooms', price: '175 ₴' },
+                            { name: 'Deruny (Potato Pancakes)', desc: '4pcs • 250g', price: '155 ₴' }
+                        ]
+                    },
+                    {
+                        name: 'Drinks',
+                        items: [
+                            { name: 'Homemade Liqueurs', desc: '50g • Cherry/Plum/Honey', price: '60 ₴' },
+                            { name: 'Carpathian Tea', desc: 'Teapot 500ml', price: '80 ₴' },
+                            { name: 'Uzvar (Dried Fruit Drink)', desc: '250ml', price: '40 ₴' }
+                        ]
+                    }
+                ]
+            }
+        }
+    }" 
+    class="bg-texture text-wood font-body antialiased selection:bg-forest selection:text-paper">
+    <nav class="fixed w-full z-[60] bg-paper/95 backdrop-blur-1 border-b border-forest/5 shadow-sm transition-all">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="h-24 w-50 flex items-center">
+                <img src="./img/logo.png" alt="SPADOK" class="h-full w-full object-contain">
+            </div>
+            
+            <div class="hidden md:flex gap-10 text-xs uppercase tracking-[0.15em] text-wood/80 font-medium">
+                <a href="#villas" class="hover:text-forest transition relative group">
+                    <span x-text="t[lang].nav_villas"></span>
+                    <span class="absolute -bottom-1 left-0 w-0 h-px bg-forest transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="#food" class="hover:text-forest transition relative group">
+                    <button @click="openMenu = true" class="hover:text-forest transition relative group uppercase tracking-[0.15em]">
+      <span x-text="t[lang].nav_food"></span>
+      <span class="absolute -bottom-1 left-0 w-0 h-px bg-forest transition-all duration-300 group-hover:w-full"></span>
+                    </button>
+                </a>
+                <a href="#faq" class="hover:text-forest transition relative group">
+                    <span x-text="t[lang].nav_faq"></span>
+                    <span class="absolute -bottom-1 left-0 w-0 h-px bg-forest transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="#reviews" class="hover:text-forest transition relative group">
+                    <span x-text="t[lang].nav_reviews"></span>
+                    <span class="absolute -bottom-1 left-0 w-0 h-px bg-forest transition-all duration-300 group-hover:w-full"></span>
+                </a>
+            </div>
+
+            <div class="flex gap-6 items-center">
+                <button @click="lang = lang === 'uk' ? 'en' : 'uk'" class="text-xs font-bold text-forest hover:opacity-70 transition">
+                    <span x-text="lang === 'uk' ? 'EN' : 'UA'"></span>
+                </button>
+                <a href="#contacts" class="btn-forest py-3 px-8 rounded-sm text-[11px] uppercase tracking-widest font-bold" x-text="t[lang].book"></a>
+            </div>
         </div>
     </nav>
 
-    <section class="pt-48 pb-16">
-        <div class="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-12">
-            <div class="flex flex-col items-center text-center">
-                <svg class="w-10 h-10 mb-5 text-black/20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1" d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-                <span class="text-[10px] uppercase tracking-[0.2em] font-bold opacity-60">Енергія 24/7</span>
+    <header class="relative min-h-screen flex items-center justify-center pt-20">
+        <div class="absolute inset-0 z-0">
+            <img src="./img/IMG_3834.jpg" alt="SPADOK Forest Villas біля озера Синевир" loading="eager" fetchpriority="high" width="1920" height="1080" class="w-full h-full object-cover grayscale-[10%] brightness-[0.85]">
+            <div class="absolute inset-0 bg-gradient-to-b from-forest/30 via-transparent to-paper"></div>
+        </div>
+        
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto mt-20">
+            <h1 class="font-h1 text-4xl md:text-[88px] text-white mb-6 leading-none shadow-sm tracking-tight">SPADOK Forest Villas</h1>
+            <h2 class="sr-only">Приватні вілли в лісі біля озера Синевир, Карпати, будинок Синевир</h2>
+
+            <p class="text-xl md:text-2xl font-heading text-white/90 mb-8" x-text="t[lang].hero_sub"></p>
+            
+            <div class="bg-paper/95 backdrop-blur-1 p-8 md:p-12 max-w-2xl mx-auto rounded-sm shadow-2xl border border-white/50">
+                <p class="text-wood text-sm md:text-base mb-8 leading-relaxed font-light italic" x-text="t[lang].hero_desc"></p>
+                <a href="#villas" class="block w-full md:w-auto md:inline-block border-b border-forest text-forest hover:text-wood pb-1 uppercase text-[11px] tracking-[0.2em] font-bold transition" x-text="t[lang].hero_cta"></a>
             </div>
-            <div class="flex flex-col items-center text-center">
-                <svg class="w-10 h-10 mb-5 text-black/20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1" d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                <span class="text-[10px] uppercase tracking-[0.2em] font-bold opacity-60">Starlink</span>
+        </div>
+    </header>
+
+    <section class="py-10">
+      <div class="max-w-4xl mx-auto px-6 text-center">
+        <p class="text-sm text-wood/70 leading-relaxed">
+          SPADOK Forest Villas — це приватні вілли для відпочинку в Карпатах,
+          розташовані поруч з озером Синевир у Закарпатській області.
+          Ідеально для пар, сімей та тих, хто шукає тишу і природу.
+        </p>
+      </div>
+    </section>
+
+    <section class="py-24 bg-texture ">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-y-12 gap-x-6">
+            <div class="flex flex-col items-center text-center group">
+                <div class="w-12 h-12 mb-6 text-forest group-hover:text-gold transition-colors duration-500">
+                    <svg class="w-8 h-8 mb-4 text-forest group-hover:text-gold transition-colors duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="light" stroke-linejoin="round" stroke-width="1.2" d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                    </svg>
+                </div>
+                <h3 class="font-heading text-xs uppercase tracking-[0.2em] mb-2 text-forest">Енергія</h3>
+                <p class="text-[10px] uppercase tracking-widest text-wood/50">Генератор 24/7</p>
             </div>
-            <div class="flex flex-col items-center text-center">
-                <svg class="w-10 h-10 mb-5 text-black/20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7"/></svg>
-                <span class="text-[10px] uppercase tracking-[0.2em] font-bold opacity-60">Опалення</span>
+            <div class="flex flex-col items-center text-center group">
+                <div class="w-12 h-12 mb-6 text-forest group-hover:text-gold transition-colors duration-500">
+                   <svg class="w-8 h-8 mb-4 text-forest group-hover:text-gold transition-colors duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="light" stroke-linejoin="round" stroke-width="1.2" d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10zM12 8v4m0 4h.01"/>
+                    </svg>
+                </div>
+                <h3 class="font-heading text-xs uppercase tracking-[0.2em] mb-2 text-forest">Зв'язок</h3>
+                <p class="text-[10px] uppercase tracking-widest text-wood/50">Starlink Internet</p>
             </div>
-            <div class="flex flex-col items-center text-center">
-                <svg class="w-10 h-10 mb-5 text-black/20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="1" d="M12 21.5c-4.142 0-7.5-3.358-7.5-7.5 0-4.5 7.5-12 7.5-12s7.5 7.5 7.5 12c0 4.142-3.358 7.5-7.5 7.5z"/></svg>
-                <span class="text-[10px] uppercase tracking-[0.2em] font-bold opacity-60">Власна вода</span>
+            <div class="flex flex-col items-center text-center group">
+                <div class="w-12 h-12 mb-6 text-forest group-hover:text-gold transition-colors duration-500">
+                    <svg class="w-8 h-8 mb-4 text-forest group-hover:text-gold transition-colors duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="light" stroke-linejoin="round" stroke-width="1.2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.99 7.99 0 0120 13a7.98 7.98 0 01-2.343 5.657z"/>
+                    </svg>
+                </div>
+                <h3 class="font-heading text-xs uppercase tracking-[0.2em] mb-2 text-forest">Опалення</h3>
+                <p class="text-[10px] uppercase tracking-widest text-wood/50">Камін та автономність</p>
+            </div>
+            <div class="flex flex-col items-center text-center group">
+                <div class="w-12 h-12 mb-6 text-forest group-hover:text-gold transition-colors duration-500">
+                    <svg class="w-8 h-8 mb-4 text-forest group-hover:text-gold transition-colors duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="light" stroke-linejoin="round" stroke-width="1.2" d="M12 21.5c-4.142 0-7.5-3.358-7.5-7.5 0-4.5 7.5-12 7.5-12s7.5 7.5 7.5 12c0 4.142-3.358 7.5-7.5 7.5z"/>
+                    </svg>
+                </div>
+                <h3 class="font-heading text-xs uppercase tracking-[0.2em] mb-2 text-forest">Вода</h3>
+                <p class="text-[10px] uppercase tracking-widest text-wood/50">Власна свердловина</p>
+            </div>
+        </div>
+    </div>
+    </section>
+
+
+    <section id="villas" class="py-28">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-20">
+                <h2 class="font-heading text-5xl text-forest mb-4" x-text="t[lang].villas_title"></h2>
+                <div class="w-16 h-px bg-forest/20 mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-16">
+                <div @click="openModal = 1; activeImage = './img/IMG_3832.jpg'" class="group cursor-pointer" loading="lazy"decoding="async" alt="Вілла SPADOK Forest Villas біля озера Синевир">
+                    <div class="overflow-hidden rounded-sm mb-6 relative shadow-lg">
+                        <img src="./img/IMG_3832.jpg" class="w-full h-[450px] object-cover transition duration-700 group-hover:scale-105" loading="lazy" decoding="async" alt="Вілла SPADOK Forest Villas біля озера Синевир">
+                        <div class="absolute inset-0 bg-forest/0 group-hover:bg-forest/10 transition duration-500"></div>
+                        <div class="absolute bottom-6 left-6 bg-paper px-4 py-2 text-xs font-bold uppercase tracking-widest text-forest">
+                            <span x-text="t[lang].v1_name"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div @click="openModal = 2; activeImage = './img/IMG_3828.jpg'" class="group cursor-pointer" >
+                    <div class="overflow-hidden rounded-sm mb-6 relative shadow-lg">
+                        <img src="./img/IMG_3828.jpg" class="w-full h-[450px] object-cover transition duration-700 group-hover:scale-105" loading="lazy"decoding="async" alt="Вілла SPADOK Forest Villas біля озера Синевир">
+                        <div class="absolute inset-0 bg-forest/0 group-hover:bg-forest/10 transition duration-500"></div>
+                         <div class="absolute bottom-6 left-6 bg-paper px-4 py-2 text-xs font-bold uppercase tracking-widest text-forest">
+                            <span x-text="t[lang].v2_name"></span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="villas" class="py-12 px-6">
-        <div class="max-w-5xl mx-auto">
-            <div class="villa-card flex flex-col md:row relative">
-                <button class="absolute top-8 right-10 text-white/30 hover:text-white text-xl z-10">✕</button>
-                <div class="md:w-[45%] h-[400px] md:h-auto overflow-hidden">
-                    <img src="./img/IMG_3832.jpg" alt="Вілла Лісова" class="w-full h-full object-cover">
+
+
+    <section class="py-24 bg-white">
+        <div class="max-w-5xl mx-auto px-6">
+            <h2 class="font-heading text-4xl text-forest text-center mb-16">Ваш маршрут у Spadok</h2>
+            <div class="space-y-12 relative">
+                <div class="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-forest/10 hidden md:block"></div>
+                
+                <div class="flex flex-col md:flex-row items-center gap-8 relative">
+                    <div class="md:w-1/2 md:text-right">
+                        <h4 class="font-heading text-xl text-forest">09:00 — Сніданок</h4>
+                        <p class="text-sm text-wood/60">Домашні сирники та кава на терасі з видом на ліс.</p>
+                    </div>
+                    <div class="w-8 h-8 rounded-full bg-forest text-paper flex items-center justify-center z-10 font-bold text-xs">1</div>
+                    <div class="md:w-1/2"></div>
                 </div>
-                <div class="md:w-[55%] p-10 md:p-16 text-white flex flex-col">
-                    <h3 class="font-heading text-5xl mb-3">Вілла Лісова</h3>
-                    <p class="text-[#D4AF37] font-semibold text-lg mb-8">від 1000 грн / особа</p>
-                    <p class="text-sm text-white/60 leading-relaxed mb-10 font-light">
-                        Максимальна близькість до природи. Вихід у ліс прямо з тераси. Ідеально для тих, хто шукає тиші.
-                    </p>
-                    
-                    <div class="mb-12">
-                        <p class="text-[10px] uppercase tracking-[0.3em] text-white/30 font-bold mb-6">Особливості</p>
-                        <div class="grid grid-cols-2 gap-y-4">
-                            <div class="flex items-center gap-3 text-[11px]"><span class="text-[#D4AF37]">✓</span> 5 спалень</div>
-                            <div class="flex items-center gap-3 text-[11px]"><span class="text-[#D4AF37]">✓</span> Власний чан</div>
-                            <div class="flex items-center gap-3 text-[11px]"><span class="text-[#D4AF37]">✓</span> Зона BBQ</div>
-                            <div class="flex items-center gap-3 text-[11px]"><span class="text-[#D4AF37]">✓</span> Starlink</div>
+
+                <div class="flex flex-col md:flex-row items-center gap-8 relative">
+                    <div class="md:w-1/2"></div>
+                    <div class="w-8 h-8 rounded-full bg-forest text-paper flex items-center justify-center z-10 font-bold text-xs">2</div>
+                    <div class="md:w-1/2 text-left">
+                        <h4 class="font-heading text-xl text-forest">11:00 — Озеро Синевир</h4>
+                        <p class="text-sm text-wood/60">Всього 10 хвилин на авто до легендарного "Морського ока".</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row items-center gap-8 relative">
+                    <div class="md:w-1/2 md:text-right">
+                        <h4 class="font-heading text-xl text-forest">17:00 — Чан та релакс</h4>
+                        <p class="text-sm text-wood/60">Повернення у віллу та вечірній чан під зорями.</p>
+                    </div>
+                    <div class="w-8 h-8 rounded-full bg-forest text-paper flex items-center justify-center z-10 font-bold text-xs">3</div>
+                    <div class="md:w-1/2"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="reviews" class="py-24 bg-paper relative overflow-hidden">
+        <div class="absolute inset-0 opacity-5 pointer-events-none" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%232C3424\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="font-heading text-4xl text-forest mb-4" x-text="lang === 'uk' ? 'Що кажуть гості' : 'Guest Reviews'"></h2>
+                
+                <div class="flex flex-col md:flex-row justify-center gap-6 md:gap-12 mt-8">
+                    <a href="https://g.page/r/CfaHqlbcNto2EAE" target="_blank" class="flex items-center gap-3 bg-white px-6 py-3 rounded-sm shadow-sm hover:shadow-md transition border border-forest/5 group">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Google_Favicon_2025.svg" class="w-6 h-6">
+                        <div class="text-left">
+                            <div class="flex items-center gap-1">
+                                <span class="font-bold text-forest text-lg">5.0</span>
+                                <span class="text-gold text-xs">★★★★★</span>
+                            </div>
+                            <span class="text-[10px] uppercase tracking-wider text-wood/60 group-hover:text-forest transition">Google Reviews</span>
                         </div>
+                    </a>
+                    
+                    <a href="https://www.booking.com/hotel/ua/spadok.uk.html" target="_blank" class="flex items-center gap-3 bg-white px-6 py-3 rounded-sm shadow-sm hover:shadow-md transition border border-[#003580]/10 group">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/be/Booking.com_logo.svg" class="w-24 h-6 object-contain filter grayscale group-hover:grayscale-0 transition">
+                        <div class="text-left pl-2 border-l border-forest/10">
+                            <div class="flex items-center gap-1">
+                                <span class="font-bold text-[#003580] text-lg">9.8</span>
+                            </div>
+                            <span class="text-[10px] uppercase tracking-wider text-wood/60">Exceptional</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                
+                <div class="bg-white p-8 rounded-sm shadow-lg border border-forest/5 flex flex-col h-full">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 bg-forest text-paper rounded-full flex items-center justify-center font-heading font-bold text-lg">S</div>
+                        <div>
+                            <div class="font-heading text-forest text-sm">Serhii</div>
+                            <div class="text-[10px] text-wood/40 uppercase tracking-widest">Google • 2 тижні тому</div>
+                        </div>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" class="w-4 h-4 ml-auto opacity-50">
+                    </div>
+                    <div class="text-gold text-xs mb-3">★★★★★</div>
+                    <p class="text-wood/80 text-sm leading-relaxed font-body italic">
+                        "Чудове місце для відпочинку! Будиночки нові, чисті та дуже затишні. Є все необхідне: від посуду до халатів. Окремий плюс за Starlink та генератор — світло та інтернет були завжди. Обов'язково повернемось!"
+                    </p>
+                </div>
+
+                <div class="bg-white p-8 rounded-sm shadow-lg border border-forest/5 flex flex-col h-full">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 bg-[#003580] text-white rounded-full flex items-center justify-center font-heading font-bold text-lg">O</div>
+                        <div>
+                            <div class="font-heading text-forest text-sm">Olena</div>
+                            <div class="text-[10px] text-wood/40 uppercase tracking-widest">Booking • 9.8</div>
+                        </div>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/be/Booking.com_logo.svg" class="w-16 h-4 ml-auto object-contain opacity-50 grayscale">
+                    </div>
+                    <p class="text-wood/80 text-sm leading-relaxed font-body italic">
+                        "Неймовірні краєвиди та тиша. Дуже сподобався чан на терасі — це просто магія. Персонал привітний, сніданки смачні. Ідеальне місце для перезавантаження."
+                    </p>
+                </div>
+
+                <div class="bg-white p-8 rounded-sm shadow-lg border border-forest/5 flex flex-col h-full">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 bg-gold text-forest rounded-full flex items-center justify-center font-heading font-bold text-lg">M</div>
+                        <div>
+                            <div class="font-heading text-forest text-sm">Mykola</div>
+                            <div class="text-[10px] text-wood/40 uppercase tracking-widest">Google • 1 місяць тому</div>
+                        </div>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" class="w-4 h-4 ml-auto opacity-50">
+                    </div>
+                    <div class="text-gold text-xs mb-3">★★★★★</div>
+                    <p class="text-wood/80 text-sm leading-relaxed font-body italic">
+                        "Все продумано до дрібниць. Камін створює атмосферу, ліжко зручне, постіль білосніжна. Дорога до вілл нормальна для будь-якого авто. Рекомендую!"
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="https://share.google/Y2l2hfOQGwXh4tiHR" target="_blank" class="inline-block border-b border-forest text-forest uppercase text-[10px] tracking-[0.2em] font-bold pb-1 hover:text-gold hover:border-gold transition">
+                    <span x-text="lang === 'uk' ? 'Читати всі відгуки' : 'Read All Reviews'"></span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-24">
+        <div class="max-w-3xl mx-auto px-6">
+            <h2 class="font-heading text-4xl text-center mb-16 text-forest" x-text="t[lang].faq_title"></h2>
+            
+            <div class="space-y-4">
+                <template x-for="(qa, idx) in [
+                    { q: lang === 'uk' ? 'Як далеко до озера?' : 'How far to the lake?', a: lang === 'uk' ? '6 км (10 хв на авто). Можна також дійти пішки мальовничою стежкою.' : '6 km (10 min drive).' },
+                    { q: lang === 'uk' ? 'Чи є світло та інтернет?' : 'Power & Internet?', a: lang === 'uk' ? 'Ми повністю автономні. Starlink + Генератор.' : 'Fully autonomous. Starlink + Generator.' },
+                    { q: lang === 'uk' ? 'Чи можна з тваринами?' : 'Pets allowed?', a: lang === 'uk' ? 'Так, ми pet-friendly! Просто попередьте нас.' : 'Yes, we are pet-friendly!' }
+                ]">
+                    <div class="border border-forest/10 bg-white p-6 rounded-sm shadow-sm hover:shadow-md transition">
+                        <button @click="faqOpen === idx ? faqOpen = null : faqOpen = idx" class="w-full flex justify-between items-center text-left">
+                            <span class="font-heading text-lg text-forest" x-text="qa.q"></span>
+                            <span class="text-forest/50 text-2xl transition-transform duration-300" :class="faqOpen === idx ? 'rotate-45' : ''">+</span>
+                        </button>
+                        <div x-show="faqOpen === idx" x-collapse class="pt-4 text-wood/70 text-sm leading-relaxed" x-text="qa.a"></div>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </section>
+
+        <section id="location" class="relative bg-paper">
+
+          <!-- SEO текст (НЕ ламає карту) -->
+          <div class="max-w-4xl mx-auto px-6 py-16 text-center">
+            <h2 class="font-heading text-3xl text-forest mb-6">
+              Вілли біля озера Синевир
+            </h2>
+            <p class="text-wood/70 leading-relaxed">
+              SPADOK Forest Villas розташовані за 6 км від озера Синевир
+              у Закарпатській області. Це ідеальне місце для відпочинку
+              в Карпатах серед лісу, тиші та гірських пейзажів.
+            </p>
+          </div>
+
+          <!-- Google Map -->
+          <div class="h-[500px] w-full relative">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d41876.10906232306!2d23.68453476489257!3d48.58079040000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4739958e23589b25%3A0x6e09e13364f77c8e!2z0KHQuNC90LXQstC40YDRgdGM0LrQsCDQn9C-0LvRj9C90LAsIDkwNDA0!5e0!3m2!1suk!2sua!4v1703000000000!5m2!1suk!2sua"
+              class="w-full h-full border-0 grayscale-[20%] contrast-[90%]"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              aria-label="SPADOK Forest Villas на мапі">
+            </iframe>
+
+            <!-- градієнт як у тебе -->
+            <div class="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-paper to-transparent pointer-events-none"></div>
+          </div>
+
+        </section>
+
+
+    <footer id="contacts" class="bg-forest text-paper py-20">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="h-18 w-32 mx-auto mb-8 flex items-center justify-center">
+                <img src="./img/logo.png" alt="SPADOK" class="h-full w-full object-contain">
+            </div>
+            
+            <div class="space-y-4 mb-12" itemscope itemtype="https://schema.org/LodgingBusiness">
+                  <span itemprop="name">SPADOK Forest Villas</span><br>
+                    <span itemprop="address" itemscope itemtype="https://schema.org/PostalAddress" class="text-sm opacity-80">
+                      <span itemprop="addressLocality">Synevyrska Poliana</span>,
+                      <span itemprop="addressRegion">Zakarpattia Oblast</span>,
+                      <span itemprop="addressCountry">UA</span>
+                    </span><br>
+                  <a href="tel:+380635411331" itemprop="telephone" class="block font-heading text-2xl hover:text-gold transition">
+                    +38 (063) 541 13 31
+                  </a>
+            </div>
+
+            <div class="flex justify-center gap-6">
+                <a href="#" class="px-8 py-3 bg-paper text-forest font-bold uppercase text-xs tracking-widest hover:bg-white transition">Telegram</a>
+                <a href="#" class="px-8 py-3 border border-paper text-paper uppercase text-xs tracking-widest hover:bg-paper hover:text-forest transition">Instagram</a>
+            </div>
+
+            <div class="mt-16 text-[10px] opacity-30 uppercase tracking-[0.4em]">
+                © 2025 Spadok Villas
+            </div>
+        </div>
+    </footer>
+
+    <template x-if="openModal">
+        <div class="fixed inset-0 z-[100] flex items-center justify-center p-4">
+            <div class="absolute inset-0 bg-forest/90 backdrop-blur-sm" @click="openModal = null" x-transition.opacity></div>
+            
+            <div class="bg-paper w-full max-w-6xl h-[90vh] md:h-[80vh] rounded-sm overflow-hidden relative flex flex-col md:flex-row shadow-2xl" x-transition.scale.95>
+                
+                <button @click="openModal = null" class="absolute top-4 right-4 z-[110] text-wood hover:text-forest transition text-2xl">✕</button>
+                
+                <div class="w-full md:w-2/3 h-1/2 md:h-full bg-black relative">
+                    <img :src="activeImage" class="w-full h-full object-cover" loading="lazy"decoding="async" alt="Вілла SPADOK Forest Villas біля озера Синевир">
+                </div>
+
+                <div class="w-full md:w-1/3 p-10 flex flex-col bg-paper overflow-y-auto custom-scrollbar">
+                    <h3 class="font-heading text-4xl text-forest mb-2" x-text="openModal === 1 ? t[lang].v1_name : t[lang].v2_name"></h3>
+                    <p class="text-gold font-heading text-xl mb-6 italic">~1000 грн <span class="text-sm text-wood/40 not-italic">/ особа</span></p>
+                    
+                    <p class="text-wood/70 text-sm leading-relaxed mb-8 font-body" x-text="openModal === 1 ? t[lang].v1_desc : t[lang].v2_desc"></p>
+
+                    <h4 class="text-xs font-bold uppercase tracking-widest text-forest mb-4" x-text="t[lang].features_title"></h4>
+                    <ul class="space-y-3 mb-10">
+                        <template x-for="f in (lang === 'uk' ? ['5 спалень', 'Власний чан', 'Зона BBQ', 'Starlink'] : ['5 bedrooms', 'Private vat', 'BBQ zone', 'Starlink'])">
+                            <li class="flex items-center gap-3 text-xs text-wood">
+                                <span class="text-forest font-bold">✓</span> <span x-text="f"></span>
+                            </li>
+                        </template>
+                    </ul>
+
+                    <div class="grid grid-cols-3 gap-2 mt-auto mb-6">
+                        <template x-for="img in (openModal === 1 ? ['./img/IMG_3832.jpg', './img/IMG_3724.jpg', './img/IMG_3830.jpg'] : ['./img/IMG_3828.jpg', './img/IMG_3834.jpg', './img/IMG_3841.jpg'])" loading="lazy"decoding="async" alt="Вілла SPADOK Forest Villas біля озера Синевир">
+                            <img :src="img" @click="activeImage = img" 
+                                 class="h-16 w-full object-cover cursor-pointer opacity-70 hover:opacity-100 transition border border-transparent hover:border-forest">
+                        </template>
                     </div>
 
-                    <a href="https://wa.me/380635411331" class="w-full bg-[#D4AF37] hover:bg-white text-black py-5 rounded-2xl font-bold uppercase text-[11px] tracking-[0.2em] transition-all text-center">
-                        Забронювати
+                    <a href="#contacts" class="w-full bg-forest text-paper text-center font-bold py-4 rounded-sm uppercase text-[11px] tracking-widest hover:bg-[#3A4530] transition shadow-xl">
+                        <span x-text="t[lang].book"></span>
                     </a>
                 </div>
             </div>
         </div>
-    </section>
-
-    <div x-show="showUrgency" class="fixed bottom-10 left-10 z-50 bg-white py-4 px-6 rounded-2xl shadow-2xl flex items-center gap-4 border border-black/5">
-        <span class="flex h-2 w-2 relative">
-            <span class="animate-ping absolute h-full w-full rounded-full bg-red-400 opacity-75"></span>
-            <span class="relative rounded-full h-2 w-2 bg-red-500"></span>
-        </span>
-        <p class="text-[10px] font-bold text-black/50 uppercase tracking-tight">
-            Сайт переглядають ще <span class="text-black" x-text="viewers"></span> осіб
-        </p>
-    </div>
-
-    <div x-show="openMenu" x-cloak class="fixed inset-0 z-[100] flex items-center justify-center p-6" x-transition>
-        <div class="absolute inset-0 bg-black/80 backdrop-blur-xl" @click="openMenu = false"></div>
-        <div class="bg-[#1A1C18] text-white w-full max-w-3xl h-[85vh] rounded-[40px] relative z-10 overflow-hidden flex flex-col border border-white/10">
-            <button @click="openMenu = false" class="absolute top-10 right-12 text-white/30 hover:text-white text-2xl">✕</button>
+    </template>
+    <template x-if="openMenu">
+    <div class="fixed inset-0 z-[100] flex items-center justify-center p-4">
+        <div class="absolute inset-0 bg-forest/95 backdrop-blur-md" @click="openMenu = false" x-transition.opacity></div>
+        
+        <div class="bg-paper w-full max-w-2xl h-[85vh] rounded-sm relative shadow-2xl flex flex-col border border-white/10" 
+             x-transition:enter="transition ease-out duration-300"
+             x-transition:enter-start="opacity-0 translate-y-10 scale-95"
+             x-transition:enter-end="opacity-100 translate-y-0 scale-100">
             
-            <div class="p-12 md:p-20 overflow-y-auto flex-grow custom-scrollbar">
-                <h2 class="font-heading text-6xl text-center mb-20 tracking-tighter">Наше Меню</h2>
+            <button @click="openMenu = false" class="absolute top-6 right-6 z-50 text-wood/50 hover:text-forest transition text-2xl">✕</button>
+
+            <div class="absolute inset-3 border border-forest/10 pointer-events-none m-2"></div>
+
+            <div class="p-10 md:p-14 overflow-y-auto custom-scrollbar h-full relative z-10">
                 
-                <div class="mb-16">
-                    <h4 class="text-[#D4AF37] text-[10px] uppercase tracking-[0.4em] font-bold mb-8 border-b border-white/5 pb-3">Сніданок [cite: 2]</h4>
-                    <div class="space-y-6">
-                        <div class="flex justify-between items-end"><div class="text-sm">Налисники (Сир/М'ясо) [cite: 3] <p class="text-[9px] text-white/30 uppercase tracking-widest mt-1">4шт [cite: 4]</p></div> <p class="font-heading text-xl text-[#D4AF37]">200 грн [cite: 4]</p></div>
-                        <div class="flex justify-between items-end"><div class="text-sm">Сирники (Сметана/Варення) [cite: 5] <p class="text-[9px] text-white/30 uppercase tracking-widest mt-1">4шт [cite: 6]</p></div> <p class="font-heading text-xl text-[#D4AF37]">185 грн [cite: 6]</p></div>
-                        <div class="flex justify-between items-end"><div class="text-sm">Яєшня (Бекон/Шинка) [cite: 7, 9] <p class="text-[9px] text-white/30 uppercase tracking-widest mt-1">2шт [cite: 8]</p></div> <p class="font-heading text-xl text-[#D4AF37]">100 грн [cite: 8]</p></div>
-                    </div>
+                <div class="text-center mb-12">
+                    <span class="text-forest text-2xl mb-2 block">✶</span>
+                    <h2 class="font-heading text-4xl text-forest uppercase tracking-wider mb-2" x-text="t[lang].menu_title"></h2>
+                    <p class="font-heading italic text-wood/60" x-text="t[lang].menu_sub"></p>
                 </div>
 
-                <div class="mb-16">
-                    <h4 class="text-[#D4AF37] text-[10px] uppercase tracking-[0.4em] font-bold mb-8 border-b border-white/5 pb-3">Перші страви [cite: 12]</h4>
-                    <div class="space-y-6">
-                        <div class="flex justify-between items-end"><div class="text-sm">Борщ Український червоний [cite: 13, 15] <p class="text-[9px] text-white/30 uppercase tracking-widest mt-1">300г [cite: 14]</p></div> <p class="font-heading text-xl text-[#D4AF37]">165 грн [cite: 14]</p></div>
-                        <div class="flex justify-between items-end"><div class="text-sm">Бограч Закарпатський [cite: 16, 18] <p class="text-[9px] text-white/30 uppercase tracking-widest mt-1">300г [cite: 17]</p></div> <p class="font-heading text-xl text-[#D4AF37]">215 грн [cite: 17]</p></div>
-                        <div class="flex justify-between items-end"><div class="text-sm">Грибна юшка (з карпатських білих грибів) [cite: 19, 21] <p class="text-[9px] text-white/30 uppercase tracking-widest mt-1">300г [cite: 20]</p></div> <p class="font-heading text-xl text-[#D4AF37]">175 грн [cite: 20]</p></div>
-                    </div>
+                <div class="space-y-12">
+                    <template x-for="category in t[lang].menu_categories">
+                        <div>
+                            <h3 class="font-heading text-2xl text-forest mb-6 border-b border-forest/10 pb-2 flex justify-between items-center">
+                                <span x-text="category.name"></span>
+                                <span class="text-xs text-wood/30">✦</span>
+                            </h3>
+                            
+                            <div class="space-y-6">
+                                <template x-for="item in category.items">
+                                    <div class="flex justify-between items-end group">
+                                        <div class="pr-4 relative bg-paper z-10">
+                                            <h4 class="font-heading text-lg text-forest group-hover:text-gold transition" x-text="item.name"></h4>
+                                            <p class="text-[10px] text-wood/50 uppercase tracking-wider mt-1" x-text="item.desc"></p>
+                                        </div>
+                                        <div class="flex-grow border-b border-dotted border-forest/20 mb-1.5 relative -z-0"></div>
+                                        <div class="pl-4 relative bg-paper z-10 font-bold text-forest whitespace-nowrap" x-text="item.price"></div>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+                    </template>
                 </div>
 
-                <div class="mb-16">
-                    <h4 class="text-[#D4AF37] text-[10px] uppercase tracking-[0.4em] font-bold mb-8 border-b border-white/5 pb-3">Алкогольна карта [cite: 33]</h4>
-                    <div class="space-y-6">
-                        <div class="flex justify-between items-end"><div class="text-sm">Finlandia [cite: 35] <p class="text-[9px] text-white/30 uppercase tracking-widest mt-1">0.5л [cite: 37]</p></div> <p class="font-heading text-xl text-[#D4AF37]">380 грн [cite: 37]</p></div>
-                        <div class="flex justify-between items-end"><div class="text-sm">Hankey Bannister [cite: 49] <p class="text-[9px] text-white/30 uppercase tracking-widest mt-1">0.7л [cite: 49]</p></div> <p class="font-heading text-xl text-[#D4AF37]">410 грн [cite: 49]</p></div>
-                    </div>
+                <div class="mt-12 pt-8 border-t border-forest/5 text-center">
+                    <p class="text-xs text-wood/40 italic font-serif">
+                        * Ми готуємо лише зі свіжих продуктів, тому час очікування може складати 20-30 хв.
+                    </p>
                 </div>
             </div>
         </div>
     </div>
+    </template>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LodgingBusiness",
+  "name": "SPADOK Forest Villas",
+  "url": "https://your-domain.com",
+  "telephone": "+380635411331",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Synevyrska Poliana",
+    "addressRegion": "Zakarpattia Oblast",
+    "addressCountry": "UA"
+  },
+  "amenityFeature": [
+    { "@type": "LocationFeatureSpecification", "name": "Fireplace" },
+    { "@type": "LocationFeatureSpecification", "name": "Hot tub" },
+    { "@type": "LocationFeatureSpecification", "name": "Starlink Internet" }
+  ],
+  "sameAs": [
+    "https://www.booking.com/hotel/ua/spadok.uk.html",
+    "https://g.page/r/CfaHqlbcNto2EAE"
+  ]
+}
+</script>
+
 
 </body>
 </html>
