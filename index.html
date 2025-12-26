@@ -330,9 +330,9 @@
                     </div>
                 </div>
 
-                <div @click="openModal = 2; activeImage = './img/IMG_3828.jpg'" class="group cursor-pointer" >
+                <div @click="openModal = 2; activeImage = './img/second_villa/IMG_4205.webp'" class="group cursor-pointer" >
                     <div class="overflow-hidden rounded-sm mb-6 relative shadow-lg">
-                        <img src="./img/IMG_3828.jpg" class="w-full h-[450px] object-cover transition duration-700 group-hover:scale-105" loading="lazy"decoding="async" alt="Вілла SPADOK Forest Villas біля озера Синевир">
+                        <img src="./img/second_villa/IMG_4205.webp" class="w-full h-[450px] object-cover transition duration-700 group-hover:scale-105" loading="lazy"decoding="async" alt="Вілла SPADOK Forest Villas біля озера Синевир">
                         <div class="absolute inset-0 bg-forest/0 group-hover:bg-forest/10 transition duration-500"></div>
                          <div class="absolute bottom-6 left-6 bg-paper px-4 py-2 text-xs font-bold uppercase tracking-widest text-forest">
                             <span x-text="t[lang].v2_name"></span>
@@ -579,7 +579,7 @@
                     </ul>
 
                     <div class="grid grid-cols-3 gap-2 mt-auto mb-6">
-                        <template x-for="img in (openModal === 1 ? ['./img/IMG_3832.jpg', './img/IMG_3724.jpg', './img/IMG_3830.jpg'] : ['./img/IMG_3828.jpg', './img/IMG_3834.jpg', './img/IMG_3841.jpg'])" loading="lazy"decoding="async" alt="Вілла SPADOK Forest Villas біля озера Синевир">
+                        <template x-for="img in (openModal === 1 ? ['./img/IMG_3832.jpg', './img/IMG_3724.jpg', './img/IMG_3830.jpg'] : ['./img/second_villa/IMG_4205.webp', './img/second_villa/IMG_4209.webp', './img/second_villa/IMG_4210.webp', './img/second_villa/IMG_4217.webp', './img/second_villa/IMG_4219.webp', './img/second_villa/IMG_4221.webp'])" loading="lazy"decoding="async" alt="Вілла SPADOK Forest Villas біля озера Синевир">
                             <img :src="img" @click="activeImage = img" 
                                  class="h-16 w-full object-cover cursor-pointer opacity-70 hover:opacity-100 transition border border-transparent hover:border-forest">
                         </template>
